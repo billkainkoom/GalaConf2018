@@ -32,5 +32,9 @@ object ComponentAnswer : BaseComponent<ComponentAnswerBinding, Answer>() {
         binding.extraImage.setImageResource(listable.extraImage)
 
     }
+
+    fun render(binding: ComponentAnswerBinding, listable: Answer, callBack: () -> Unit) {
+
+    }
 }
 
