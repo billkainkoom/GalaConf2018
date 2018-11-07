@@ -1,6 +1,7 @@
 package com.hubtel.galaconf2018
 
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(activityMainBinding.toolbar)
 
-        activityMainBinding.fab.setOnClickListener {
+        /*activityMainBinding.fab.setOnClickListener {
             //when fab is clicked
             QuickDialog(
                     context = context,
@@ -53,6 +54,10 @@ class MainActivity : AppCompatActivity() {
                     )
                     .showPositiveButton()
                     .show()
+        }*/
+
+        activityMainBinding.fab.setOnClickListener {
+            startActivity(Intent(this, ListActivity::class.java))
         }
 
         activityMainBinding.content.button1.setOnClickListener {
