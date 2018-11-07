@@ -8,10 +8,7 @@ import com.billkainkoom.ogya.quicklist.LayoutManager
 import com.billkainkoom.ogya.quicklist.Listable
 import com.billkainkoom.ogya.quicklist.ListableHelper
 import com.hubtel.galaconf2018.component.*
-import com.hubtel.galaconf2018.databinding.ActivityListBinding
-import com.hubtel.galaconf2018.databinding.ActivityMainBinding
-import com.hubtel.galaconf2018.databinding.ComponentAnswerBinding
-import com.hubtel.galaconf2018.databinding.ComponentGreetingBinding
+import com.hubtel.galaconf2018.databinding.*
 
 class ListActivity : AppCompatActivity() {
 
@@ -29,14 +26,19 @@ class ListActivity : AppCompatActivity() {
 
     fun loadPage() {
         var data = mutableListOf<Listable>()
-        for (index in 0..100) {
-            if (index % 2 == 0) {
-                data.add(Greeting("Greeting ${index}"))
-            } else {
-                data.add(Answer("Answer ${index}"))
-            }
 
-        }
+        //greetings
+        data.add(General(title = "Greetings from Abroad", type = ListableTypes.ComponentSectionHeader))
+        data.add(Greeting("Upload contacts", image = R.drawable.ic_contacts_black_24dp))
+        data.add(Greeting("All people", image = R.drawable.ic_view_list_black_24dp))
+
+
+        //answers
+        data.add(General(title = "Answers from Ghana", type = ListableTypes.ComponentSectionHeader))
+        data.add(Answer(name = "Elijah Tetteh", subtitle = "Added from Facebook", image = R.drawable.profile, extraImage = R.drawable.ic_pan_tool_black_24dp))
+        data.add(Answer(name = "Raymond Okai", subtitle = "Added from Facebook", image = R.drawable.profile, extraImage = R.drawable.ic_pan_tool_black_24dp))
+        data.add(Answer(name = "Beatrice Dosu", subtitle = "Added from Facebook", image = R.drawable.profile, extraImage = R.drawable.ic_pan_tool_black_24dp))
+
 
         ListableHelper.loadList(
                 context = context,
@@ -50,6 +52,9 @@ class ListActivity : AppCompatActivity() {
                         }
                         ListableTypes.ComponentAnswer -> {
                             ComponentAnswer.render(listableBinding as ComponentAnswerBinding, listable as Answer)
+                        }
+                        ListableTypes.ComponentSectionHeader -> {
+                            ComponentSectionHeader.render(listableBinding as ComponentSectionHeaderBinding, listable as General)
                         }
                     }
 

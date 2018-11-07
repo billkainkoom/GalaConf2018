@@ -8,33 +8,10 @@ import com.hubtel.galaconf2018.databinding.ComponentAnswerBinding
 import com.hubtel.galaconf2018.databinding.ComponentGreetingBinding
 
 
-data class Greeting(var name: String) : Listable {
-
-    override fun getListableType(): ListableType? {
-        return ListableTypes.ComponentGreeting
-    }
-
-}
-
-data class Answer(var name: String) : Listable {
+data class Answer(var name: String, var subtitle: String, var image: Int, var extraImage: Int) : Listable {
 
     override fun getListableType(): ListableType? {
         return ListableTypes.ComponentAnswer
-    }
-
-}
-
-
-//greeting
-object ComponentGreeting : BaseComponent<ComponentGreetingBinding, Greeting>() {
-
-    override fun listableType(): ListableType {
-        return ListableTypes.ComponentGreeting
-    }
-
-    override fun render(binding: ComponentGreetingBinding, listable: Greeting) {
-        //customization
-        binding.title.text = listable.name
     }
 
 }
@@ -50,10 +27,10 @@ object ComponentAnswer : BaseComponent<ComponentAnswerBinding, Answer>() {
     override fun render(binding: ComponentAnswerBinding, listable: Answer) {
         //customization
         binding.title.text = listable.name
+        binding.subtitle.text = listable.subtitle
+        binding.image.setImageResource(listable.image)
+        binding.extraImage.setImageResource(listable.extraImage)
+
     }
-
-    fun render(binding: ComponentAnswerBinding, listable: Answer,callBack:()->Unit) {
-
-    }
-
 }
+
